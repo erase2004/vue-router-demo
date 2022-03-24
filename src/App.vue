@@ -1,30 +1,76 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div
+    id="nav"
+    class="p-4"
+  >
+    <router-link
+      class="page-link"
+      :to="{name: 'home'}"
+    >
+      Homepage
+    </router-link> |
+    <router-link
+      class="page-link"
+      :to="{name: 'multi-first'}"
+    >
+      Multi View #1
+    </router-link> |
+    <router-link
+      class="page-link"
+      :to="{name: 'multi-second'}"
+    >
+      Multi View #2
+    </router-link> |
+    <router-link
+      class="page-link"
+      :to="{name: 'multi-third'}"
+    >
+      Multi View #3
+    </router-link> |
+    <router-link
+      class="page-link"
+      :to="{name: 'multi-fourth'}"
+    >
+      Multi View #4
+    </router-link> |
+    <router-link
+      class="page-link"
+      :to="{name: 'nested'}"
+      :class="{'link-exact-active': ['nested', 'tab-first', 'tab-second', 'tab-third'].includes($route.name)}"
+    >
+      Nested Route
+    </router-link>
   </div>
-  <router-view/>
+  <div class="bg-gray-800 h-0.5" />
+  <div class="flex flex-grow md:flex-row flex-col flex-nowrap">
+    <router-view class="flex-grow" />
+    <router-view
+      name="SubviewOne"
+      class="flex-grow"
+    />
+    <router-view
+      name="SubviewTwo"
+      class="flex-grow"
+    />
+  </div>
 </template>
 
-<style>
+<style lang="postcss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  @apply h-screen flex flex-col text-center text-main;
 }
 
-#nav {
-  padding: 30px;
+.text-main {
+  @apply text-gray-800;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.page-link {
+  @apply text-main font-bold hover:opacity-70;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.link-exact-active {
+  @apply text-green-500;
 }
 </style>
